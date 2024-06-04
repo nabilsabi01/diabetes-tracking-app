@@ -1,18 +1,25 @@
 package com.diabetes.tracker.controller;
 
 import com.diabetes.tracker.model.GlucoseReading;
+import com.diabetes.tracker.model.MealType;
 import com.diabetes.tracker.service.GlucoseReadingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
-@RestController
-@RequestMapping("/glucose-readings")
+@Controller
+@RequestMapping("/readings")
 public class GlucoseReadingController {
-
     private final GlucoseReadingService glucoseReadingService;
 
     @Autowired
@@ -20,43 +27,35 @@ public class GlucoseReadingController {
         this.glucoseReadingService = glucoseReadingService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<GlucoseReading>> getAllGlucoseReadings() {
+    @GetMapping("/list")
+    public String getAllReadings(Model model) {
         List<GlucoseReading> glucoseReadings = glucoseReadingService.getAllReadings();
-        return new ResponseEntity<>(glucoseReadings, HttpStatus.OK);
+        model.addAttribute("glucoseReadings", glucoseReadings);
+        return "list";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<GlucoseReading> getGlucoseReadingById(@PathVariable Long id) {
-        GlucoseReading glucoseReading = glucoseReadingService.getReadingById(id);
-        if (glucoseReading != null) {
-            return new ResponseEntity<>(glucoseReading, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("glucoseReading", new GlucoseReading());
+        model.addAttribute("mealTypes", MealType.values());
+        return "add";
+    }
+
+    @PostMapping("/save")
+    public String saveReading(@Valid @ModelAttribute("glucoseReading") GlucoseReading glucoseReading, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "list";
         }
+
+        GlucoseReading savedReading = glucoseReadingService.saveReading(glucoseReading);
+        redirectAttributes.addFlashAttribute("success", "Glucose reading saved successfully.");
+        return "redirect:/readings/list";
     }
 
-    @PostMapping
-    public ResponseEntity<GlucoseReading> addGlucoseReading(@RequestBody GlucoseReading glucoseReading) {
-        GlucoseReading newGlucoseReading = glucoseReadingService.saveReading(glucoseReading);
-        return new ResponseEntity<>(newGlucoseReading, HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<GlucoseReading> updateGlucoseReading(@PathVariable Long id, @RequestBody GlucoseReading glucoseReading) {
-        GlucoseReading updatedGlucoseReading = glucoseReadingService.getReadingById(id);
-        if (updatedGlucoseReading != null) {
-            glucoseReading.setId(id);
-            updatedGlucoseReading = glucoseReadingService.saveReading(glucoseReading);
-            return new ResponseEntity<>(updatedGlucoseReading, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGlucoseReading(@PathVariable Long id) {
+    @GetMapping("/delete/{id}")
+    public String deleteReading(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         glucoseReadingService.deleteReading(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        redirectAttributes.addFlashAttribute("success", "Glucose reading deleted successfully.");
+        return "redirect:/readings/list";
     }
 }

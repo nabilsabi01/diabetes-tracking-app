@@ -1,9 +1,17 @@
 package com.diabetes.tracker.model;
 
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "glucose_readings")
@@ -12,69 +20,34 @@ public class GlucoseReading {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private LocalDate date;
 
+    @NotNull
+    @Column(nullable = false)
     private LocalTime time;
 
+    @NotNull
+    @Positive
+    @Column(name = "glucose_level", nullable = false)
     private double glucoseLevel;
 
     @Column
     private String notes;
 
-    @Column
-    private String mealType;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "meal_type", nullable = false)
+    private MealType mealType;
 
-    @Column
-    private double insulinDose;
+    @Positive
+    @Column(name = "insulin_dose")
+    private Double insulinDose;
 
-    @Column
-    private double weightInKg;
-
-    public GlucoseReading() {
-    }
-
-    public GlucoseReading(Long id, LocalDate date, LocalTime time, double glucoseLevel, String notes, String mealType, double insulinDose, double weightInKg) {
-        this.id = id;
-        this.date = date;
-        this.time = time;
-        this.glucoseLevel = glucoseLevel;
-        this.notes = notes;
-        this.mealType = mealType;
-        this.insulinDose = insulinDose;
-        this.weightInKg = weightInKg;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public String getMealType() {
-        return mealType;
-    }
-
-    public void setMealType(String mealType) {
-        this.mealType = mealType;
-    }
-
-    public double getInsulinDose() {
-        return insulinDose;
-    }
-
-    public void setInsulinDose(double insulinDose) {
-        this.insulinDose = insulinDose;
-    }
-
-    public double getWeightInKg() {
-        return weightInKg;
-    }
-
-    public void setWeightInKg(double weightInKg) {
-        this.weightInKg = weightInKg;
-    }
+    @Positive
+    @Column(name = "weight_in_kg")
+    private Double weightInKg;
 
     public Long getId() {
         return id;
@@ -106,5 +79,37 @@ public class GlucoseReading {
 
     public void setGlucoseLevel(double glucoseLevel) {
         this.glucoseLevel = glucoseLevel;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public MealType getMealType() {
+        return mealType;
+    }
+
+    public void setMealType(MealType mealType) {
+        this.mealType = mealType;
+    }
+
+    public Double getInsulinDose() {
+        return insulinDose;
+    }
+
+    public void setInsulinDose(Double insulinDose) {
+        this.insulinDose = insulinDose;
+    }
+
+    public Double getWeightInKg() {
+        return weightInKg;
+    }
+
+    public void setWeightInKg(Double weightInKg) {
+        this.weightInKg = weightInKg;
     }
 }

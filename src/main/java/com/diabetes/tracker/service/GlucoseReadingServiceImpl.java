@@ -4,11 +4,14 @@ import com.diabetes.tracker.model.GlucoseReading;
 import com.diabetes.tracker.repository.GlucoseReadingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class GlucoseReadingServiceImpl implements GlucoseReadingService{
+@Transactional
+public class GlucoseReadingServiceImpl implements GlucoseReadingService {
+
     private final GlucoseReadingRepository glucoseReadingRepository;
 
     @Autowired
