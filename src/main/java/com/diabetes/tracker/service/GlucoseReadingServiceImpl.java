@@ -5,7 +5,6 @@ import com.diabetes.tracker.repository.GlucoseReadingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -22,11 +21,6 @@ public class GlucoseReadingServiceImpl implements GlucoseReadingService {
     @Override
     public List<GlucoseReading> getAllReadings() {
         return glucoseReadingRepository.findAll();
-    }
-
-    @Override
-    public GlucoseReading getReadingById(Long id) {
-        return glucoseReadingRepository.findById(id).orElse(null);
     }
 
     @Override

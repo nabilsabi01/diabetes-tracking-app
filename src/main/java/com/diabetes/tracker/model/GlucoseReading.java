@@ -1,5 +1,7 @@
 package com.diabetes.tracker.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,33 +21,20 @@ public class GlucoseReading {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
-    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
-    @NotNull
-    @Column(nullable = false)
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime time;
-
-    @NotNull
-    @Positive
-    @Column(name = "glucose_level", nullable = false)
+    @Column(name = "glucose_level")
     private double glucoseLevel;
-
-    @Column
     private String notes;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "meal_type", nullable = false)
+    @Column(name = "meal_type")
     private MealType mealType;
-
     @Positive
     @Column(name = "insulin_dose")
     private Double insulinDose;
-
-    @Positive
     @Column(name = "weight_in_kg")
     private Double weightInKg;
 
