@@ -1,15 +1,14 @@
 CREATE DATABASE IF NOT EXISTS diabetes_tracker;
 USE diabetes_tracker;
-
 CREATE TABLE IF NOT EXISTS glucose_readings (
-                                                id INT AUTO_INCREMENT PRIMARY KEY,
-                                                date DATE NOT NULL,
-                                                time TIME NOT NULL,
-                                                glucose_level DOUBLE NOT NULL,
-                                                notes VARCHAR(255),
-                                                meal_type ENUM('Breakfast', 'Lunch', 'Dinner', 'Snack') NOT NULL,
-                                                insulin_dose DOUBLE,
-                                                weight_in_kg DOUBLE
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    glucose_level DOUBLE NOT NULL,
+    notes VARCHAR(255),
+    meal_type ENUM('Breakfast', 'Lunch', 'Dinner', 'Snack') NOT NULL,
+    insulin_dose DOUBLE,
+    weight_in_kg DOUBLE
 );
 
 INSERT INTO glucose_readings (date, time, glucose_level, notes, meal_type, insulin_dose, weight_in_kg)

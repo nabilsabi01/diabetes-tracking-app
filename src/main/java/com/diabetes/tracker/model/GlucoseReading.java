@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
@@ -23,7 +22,6 @@ public class GlucoseReading {
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime time;
     @Column(name = "glucose_level")
@@ -100,5 +98,19 @@ public class GlucoseReading {
 
     public void setWeightInKg(Double weightInKg) {
         this.weightInKg = weightInKg;
+    }
+
+    @Override
+    public String toString() {
+        return "GlucoseReading{" +
+                "id=" + id +
+                ", date=" + date +
+                ", time=" + time +
+                ", glucoseLevel=" + glucoseLevel +
+                ", notes='" + notes + '\'' +
+                ", mealType=" + mealType +
+                ", insulinDose=" + insulinDose +
+                ", weightInKg=" + weightInKg +
+                '}';
     }
 }

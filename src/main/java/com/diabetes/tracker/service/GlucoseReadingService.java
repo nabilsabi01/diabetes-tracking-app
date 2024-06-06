@@ -7,4 +7,5 @@ public interface GlucoseReadingService {
     List<GlucoseReading> getAllReadings();
     GlucoseReading saveReading(GlucoseReading reading);
     void deleteReading(Long id);
+    List<GlucoseReading> findAll();
 }

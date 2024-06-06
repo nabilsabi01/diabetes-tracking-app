@@ -32,4 +32,9 @@ public class GlucoseReadingServiceImpl implements GlucoseReadingService {
     public void deleteReading(Long id) {
         glucoseReadingRepository.deleteById(id);
     }
+
+    @Override
+    public List<GlucoseReading> findAll() {
+        return glucoseReadingRepository.findAll();
+    }
 }

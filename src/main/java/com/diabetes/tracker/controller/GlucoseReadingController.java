@@ -25,18 +25,25 @@ public class GlucoseReadingController {
         this.glucoseReadingService = glucoseReadingService;
     }
 
+    @GetMapping("/glucose-chart")
+    public String showGlucoseChart(Model model) {
+        List<GlucoseReading> glucoseReadings = glucoseReadingService.findAll();
+        model.addAttribute("glucoseReadings", glucoseReadings);
+        return "glucose_chart";
+    }
+
     @GetMapping("/list")
     public String getAllReadings(Model model) {
-        List<GlucoseReading> glucoseReadings = glucoseReadingService.getAllReadings();
+        List<GlucoseReading> glucoseReadings = glucoseReadingService.findAll();
         model.addAttribute("glucoseReadings", glucoseReadings);
-        return "list";
+        return "record-glucose-list";
     }
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("glucoseReading", new GlucoseReading());
         model.addAttribute("mealTypes", Arrays.asList(MealType.values()));
-        return "add";
+        return "record-glucose-add";
     }
 
     @PostMapping("/save")
@@ -49,7 +56,6 @@ public class GlucoseReadingController {
         redirectAttributes.addFlashAttribute("success", "Glucose reading saved successfully.");
         return "redirect:/readings/list";
     }
-
 
     @GetMapping("/delete/{id}")
     public String deleteReading(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
