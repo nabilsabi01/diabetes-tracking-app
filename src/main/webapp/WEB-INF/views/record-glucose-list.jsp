@@ -41,6 +41,7 @@
             background-color: #f44336;
             border-color: #f44336;
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            color: white;
         }
         .btn-delete:hover {
             background-color: #e53935;

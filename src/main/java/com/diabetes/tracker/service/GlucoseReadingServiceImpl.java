@@ -5,12 +5,13 @@ import com.diabetes.tracker.repository.GlucoseReadingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @Transactional
 public class GlucoseReadingServiceImpl implements GlucoseReadingService {
-
     private final GlucoseReadingRepository glucoseReadingRepository;
 
     @Autowired
@@ -36,5 +37,10 @@ public class GlucoseReadingServiceImpl implements GlucoseReadingService {
     @Override
     public List<GlucoseReading> findAll() {
         return glucoseReadingRepository.findAll();
+    }
+
+    @Override
+    public List<GlucoseReading> findByDateRange(LocalDate startDate, LocalDate endDate) {
+        return glucoseReadingRepository.findByDateBetween(startDate, endDate);
     }
 }
