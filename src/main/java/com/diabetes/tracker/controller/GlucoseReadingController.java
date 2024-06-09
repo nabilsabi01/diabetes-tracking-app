@@ -16,9 +16,14 @@ import java.time.LocalDate;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/readings")
+@RequestMapping("/")
 public class GlucoseReadingController {
     private final GlucoseReadingService glucoseReadingService;
+
+    @GetMapping("/")
+    public String showIndexPage() {
+        return "index";
+    }
 
     @Autowired
     public GlucoseReadingController(GlucoseReadingService glucoseReadingService) {

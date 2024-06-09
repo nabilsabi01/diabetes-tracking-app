@@ -1,0 +1,256 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: #6f42c1;
+    padding: 1rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.hero {
+    background-color: #f8f9fa;
+    padding: 6rem 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #6f42c1;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 2rem;
+}
+
+.feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: #6f42c1;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-box {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.quote-icon {
+    font-size: 1.5rem;
+    color: #6f42c1;
+    margin-bottom: 1rem;
+}
+
+.testimonial-box p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-box h4 {
+    font-weight: 600;
+}
+
+.pricing-box {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.pricing-box.featured {
+    background-color: #fd7e14;
+    color: #fff;
+}
+
+.pricing-box.featured .price {
+    color: #fff;
+}
+
+.pricing-box.featured .btn {
+    background-color: #fff;
+    color: #fd7e14;
+}
+
+.pricing-box h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-box .price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #6f42c1;
+}
+
+.pricing-box .features-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.pricing-box .features-list li {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact {
+    padding: 4rem 0;
+}
+
+.contact .info-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact .info-box i {
+    font-size: 1.5rem;
+    color: #6f42c1;
+    margin-right: 0.5rem;
+}
+
+.contact .info-box p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+footer {
+    background-color: #6f42c1;
+    color: #fff;
+    padding: 2rem 0;
+}
+
+footer .social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+footer .social-icons li {
+    margin-left: 1rem;
+}
+
+footer .social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+footer .social-icons a:hover {
+    color: #fd7e14;
+}
+
+.btn-purple {
+    background-color: #6f42c1;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-orange {
+    background-color: #fd7e14;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-purple:hover,
+.btn-orange:hover {
+    background-color: #333;
+}
+
+.like {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+}
+
+.like-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6f42c1;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.like-link:hover {
+    background-color: #6f42c1;
+    color: #fff;
+}
+
+.like-link i {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+}
+
+.feature-box:hover .feature-icon,
+.testimonial-box:hover .quote-icon,
+.pricing-box:hover .price,
+.like-link:hover i {
+    animation: pulse 0.5s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
